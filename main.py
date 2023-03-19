@@ -26,16 +26,18 @@ def parallel_processing(n, m, data):
     return output
 
 def main():
-    # Read input from keyboard
-    n, m = map(int, input().split())
-    data = list(map(int, input().split()))
+    # Read input from test case
+    n, m = map(int, input().strip().split())
+    data = list(map(int, input().strip().split()))
 
     # Call the function
     result = parallel_processing(n, m, data)
     
     # Print out the results, each pair in its own line
+    output = ""
     for thread_idx, start_time in result:
-        print(thread_idx, start_time)
+        output += str(thread_idx) + " " + str(start_time) + "\n"
+    print(output.strip())
 
 if __name__ == "__main__":
     main()
