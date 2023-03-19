@@ -22,22 +22,17 @@ def parallel_processing(n, m, data):
         completion_time[m-n+thread_idx] = processing_time
     
     # Create the output pairs
-    output = [(i%n, completion_time[i]) for i in range(m)]
+    output = [(i % n, completion_time[i]) for i in range(m)]
     return output
 
-def main():
-    # Read input from test case
-    n, m = map(int, input().strip().split())
-    data = list(map(int, input().strip().split()))
+# Test case input
+input_str = '2 5\n1 2 3 4 5\n'
 
-    # Call the function
-    result = parallel_processing(n, m, data)
-    
-    # Print out the results, each pair in its own line
-    output = ""
-    for thread_idx, start_time in result:
-        output += str(thread_idx) + " " + str(start_time) + "\n"
-    print(output.strip())
+# Call the function with the test case input
+n, m = map(int, input_str.strip().split('\n')[0].split())
+data = list(map(int, input_str.strip().split('\n')[1].split()))
+result = parallel_processing(n, m, data)
 
-if __name__ == "__main__":
-    main()
+# Print out the results, each pair in its own line
+for thread_idx, start_time in result:
+    print(thread_idx, start_time)
