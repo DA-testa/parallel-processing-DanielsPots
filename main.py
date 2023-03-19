@@ -1,4 +1,5 @@
 import heapq
+import sys
 
 def parallel_processing(n, m, data):
     # Initialize a priority queue with the first n jobs and the time it takes to process them
@@ -25,14 +26,18 @@ def parallel_processing(n, m, data):
     output = [(i % n, completion_time[i]) for i in range(m)]
     return output
 
-# Test case input
-input_str = '2 5\n1 2 3 4 5\n'
+def main():
+    # Read input from stdin
+    input_lines = sys.stdin.readlines()
+    n, m = map(int, input_lines[0].strip().split())
+    data = list(map(int, input_lines[1].strip().split()))
 
-# Call the function with the test case input
-n, m = map(int, input_str.strip().split('\n')[0].split())
-data = list(map(int, input_str.strip().split('\n')[1].split()))
-result = parallel_processing(n, m, data)
+    # Call the function
+    result = parallel_processing(n, m, data)
+    
+    # Print out the results, each pair in its own line
+    for thread_idx, start_time in result:
+        print(thread_idx, start_time)
 
-# Print out the results, each pair in its own line
-for thread_idx, start_time in result:
-    print(thread_idx, start_time)
+if __name__ == "__main__":
+    main()
